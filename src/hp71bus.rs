@@ -1,11 +1,11 @@
 
-enum Command {
+pub enum Command {
     Id,
     Config,
 }
 
 ///
-struct BusDevice {
+pub struct BusDevice {
     // state
     configured: bool,
 
@@ -15,7 +15,7 @@ struct BusDevice {
     /// 5-nibbles used (2.5 bytes)
     /// 
     /// sent in responce to `Command::Id` when `daisy_in` is high.
-    /// 
+    /// g
     /// Nibbles:
     /// 
     /// 0: (14 - log2(size in KB)) if memory
@@ -34,17 +34,17 @@ struct BusDevice {
     id: u32
 }
 
-struct BusSignalsIn {
+pub struct BusSignalsIn {
     // if not `configured`, only respond to `Command::Config` and `Command::Id` when `daisy_in` is high.
     daisy_in: bool,
 }
 
-struct BusSignalsOut {
+pub struct BusSignalsOut {
     daisy_out: bool,
 }
 
 impl BusDevice {
-    fn command(&mut self, cmd: Command, sig: BusSignalsIn)
+    fn command(&mut self, _cmd: Command, sig: BusSignalsIn)
     {
         if !self.configured && !sig.daisy_in {
             // no action if unconfigured and no daisy_in present
@@ -53,6 +53,7 @@ impl BusDevice {
 
         if !self.configured && sig.daisy_in {
             // respond to `Id` or `Config` only
+            unimplemented!()
         }
 
         unimplemented!()
