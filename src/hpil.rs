@@ -195,8 +195,8 @@ pub enum MessageType {
     /// `101_01100000`
     SendDataReady,    
 
-    /// "SOT"
-    /// "IFC"
+    // "SOT"
+    // "IFC"
 }
 
 
